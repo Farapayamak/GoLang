@@ -19,7 +19,7 @@ type RestClient struct {
 
 type RestResponse struct {
 	Value			string
-	RetStatus		string
+	RetStatus		int
 	StrRetStatus	string
 }
 
