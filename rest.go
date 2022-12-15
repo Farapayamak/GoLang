@@ -39,6 +39,7 @@ func InitRestClient(username string, password string) *RestClient {
 
 // http.MethodPost
 func (c *RestClient) CallRestAPI(req *http.Request, v *RestResponse) error {
+	
 	req.Header.Set("Accept", "application/json; charset=utf-8")
 	// req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.apiKey))
 
@@ -82,7 +83,7 @@ type SendSMSRestModel struct {
 
 func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 
-	jsonBody := []byte(`{"username": "foo", "password": "bar"}`)
+	jsonBody := []byte(fmt.Sprintf("{"username": "%s", "password": "%s"}", c.username, c.password))
  	bodyReader := bytes.NewReader(jsonBody)
 
 	req, err := http.NewRequest("POST", fmt.Sprintf("%s/SendSMS", c.baseURL), bodyReader)
