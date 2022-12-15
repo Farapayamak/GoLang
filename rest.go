@@ -6,11 +6,14 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+	"bytes"
 )
 
 type RestClient struct {
 	baseURL		string
 	HTTPClient	*http.Client
+	username	string
+	password	string
 }
 
 
@@ -25,14 +28,16 @@ type RestResponse struct {
 func InitRestClient(username string, password string) *RestClient {
 	return &RestClient {
 		HTTPClient: &http.Client {
-			Timeout: 3 * time.Minute,
+			Timeout: 1 * time.Minute,
 		},
 		baseURL: "https://rest.payamak-panel.com/api/SendSMS",
+		username: username,
+		password: password,
 	}
 }
 
 
-
+// http.MethodPost
 func (c *RestClient) CallRestAPI(req *http.Request, v *RestResponse) error {
 	req.Header.Set("Accept", "application/json; charset=utf-8")
 	// req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.apiKey))
@@ -77,7 +82,10 @@ type SendSMSRestModel struct {
 
 func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s/SendSMS", c.baseURL), nil)
+	jsonBody := []byte(`{"username": "foo", "password": "bar"}`)
+ 	bodyReader := bytes.NewReader(jsonBody)
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/SendSMS", c.baseURL), bodyReader)
 	if err != nil {
 		return nil, err
 	}
