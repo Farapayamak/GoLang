@@ -31,7 +31,7 @@ func InitRestClient(username string, password string) *RestClient {
 }
 
 
-// http.MethodPost
+
 func (c *RestClient) callRestAPI(req *http.Request) (*RestResponse, error) {
 	
 	req.Header.Set("Accept", "application/json; charset=utf-8")
@@ -99,9 +99,9 @@ func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	jsonBody := []byte(*body)
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/SendSMS", c.baseURL), bytes.NewReader(jsonBody))
+	// "POST" or http.MethodPost
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/SendSMS", c.baseURL), bytes.NewReader([]byte(*body)))
 	if err != nil {
 		return nil, err
 	}
