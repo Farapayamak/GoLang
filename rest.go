@@ -48,11 +48,6 @@ func (c *RestClient) callRestAPI(req *http.Request, v *RestResponse) error {
 	}
 
 	// Unmarshall and populate v
-	if c.debug {
-		fmt.Printf("%+v\n", v)
-		fmt.Println("response body is %s", res.Body)
-	}
-	
 	fullResponse := RestResponse {
 		Value: 			v.Value,
 		RetStatus:		v.RetStatus,
@@ -60,6 +55,11 @@ func (c *RestClient) callRestAPI(req *http.Request, v *RestResponse) error {
 	}
 	if err = json.NewDecoder(res.Body).Decode(&fullResponse); err != nil {
 		return err
+	}
+
+	if c.debug {
+		fmt.Printf("%+v\n", *v)
+		fmt.Printf("%+v\n", fullResponse)
 	}
 
 	return nil
