@@ -83,7 +83,7 @@ type SendSMSRestModel struct {
 
 func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 
-	jsonBody := []byte(fmt.Sprintf("{"username": "%s", "password": "%s"}", c.username, c.password))
+	jsonBody := []byte(fmt.Sprintf("{\"username\": \"%s\", \"password\": \"%s\"}", c.username, c.password))
  	bodyReader := bytes.NewReader(jsonBody)
 
 	req, err := http.NewRequest("POST", fmt.Sprintf("%s/SendSMS", c.baseURL), bodyReader)
