@@ -10,7 +10,7 @@ type RestResponse struct {
 
 
 type SendSMSRestModel struct {
-	to		string
-	from	string
-	text	string
+	To		string
+	From	string
+	Text	string
 }
