@@ -18,3 +18,10 @@ type SendSMSRestModel struct {
 type GetDeliveries2RestModel struct { 
 	RecId	int		`json:"recID"`
 }
+
+type GetMessagesRestModel struct {
+	Location	int
+	From		string
+	Index		int
+	Count		int
+}

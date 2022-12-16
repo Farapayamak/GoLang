@@ -147,3 +147,52 @@ func (c *RestClient) GetDeliveries2(args *GetDeliveries2RestModel) (*RestRespons
 	return res, nil
 
 }
+
+
+func (c *RestClient) GetMessages(args *GetMessagesRestModel) (*RestResponse, error) {
+	
+	body, err := c.addCredentials(args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/GetMessages", c.baseURL), bytes.NewReader([]byte(*body)))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
+
+	res, err := c.callRestAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+
+func (c *RestClient) GetCredit() (*RestResponse, error) {
+	
+	var args interface {}
+	body, err := c.addCredentials(&args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/GetCredit", c.baseURL), bytes.NewReader([]byte(*body)))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
+
+	res, err := c.callRestAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
