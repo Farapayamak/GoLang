@@ -62,7 +62,7 @@ func (c *RestClient) callRestAPI(req *http.Request) (*RestResponse, error) {
 
 func (c *RestClient) addCredentials(data interface{}) (*string, error) {
    
-	var mapped map[string]interface{}
+	mapped := make(map[string]interface{})
     jsonStr, err := json.Marshal(data)
 	if err != nil {
         return nil, err
