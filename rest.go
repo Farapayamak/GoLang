@@ -88,6 +88,11 @@ func (c *RestClient) addCredentials(data interface{}) (*string, error) {
 	}
 
 	result := string(jsonStr2)
+
+	if c.debug {
+		fmt.Println("Json string: ", result)
+	}
+
 	return &result, nil
 }
 
