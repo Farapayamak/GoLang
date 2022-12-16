@@ -48,6 +48,11 @@ func (c *RestClient) callRestAPI(req *http.Request, v *RestResponse) error {
 	}
 
 	// Unmarshall and populate v
+	if c.debug {
+		fmt.Printf("%+v\n", v)
+		fmt.Println("response body is %s", res.Body)
+	}
+	
 	fullResponse := RestResponse {
 		Value: 			v.Value,
 		RetStatus:		v.RetStatus,
