@@ -32,37 +32,31 @@ func InitRestClient(username string, password string) *RestClient {
 
 
 // http.MethodPost
-func (c *RestClient) callRestAPI(req *http.Request, v *RestResponse) error {
+func (c *RestClient) callRestAPI(req *http.Request) (*RestResponse, error) {
 	
 	req.Header.Set("Accept", "application/json; charset=utf-8")
 
 	res, err := c.HTTPClient.Do(req)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
 	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
-		return fmt.Errorf("unknown error, status code: %d", res.StatusCode)
+		return nil, fmt.Errorf("unknown error, status code: %d", res.StatusCode)
 	}
 
-	// Unmarshall and populate v
-	fullResponse := RestResponse {
-		// Value: 			v.Value,
-		// RetStatus:		v.RetStatus,
-		// StrRetStatus:	v.StrRetStatus,
-	}
-	if err = json.NewDecoder(res.Body).Decode(&fullResponse); err != nil {
-		return err
+	response := RestResponse {}
+	if err = json.NewDecoder(res.Body).Decode(&response); err != nil {
+		return nil, err
 	}
 
 	if c.debug {
-		// fmt.Printf("%+v\n", *v)
-		fmt.Printf("%+v\n", fullResponse)
+		fmt.Printf("%+v\n", response)
 	}
 
-	return nil
+	return &response, nil
 }
 
 
@@ -87,7 +81,6 @@ func (c *RestClient) addCredentials(data interface{}) (*string, error) {
 			fmt.Println("KV Pair: ", field, val)
 		}
 	}
-    
 
 	jsonStr2, err := json.Marshal(mapped)
 	if err != nil {
@@ -115,11 +108,11 @@ func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
-	res := RestResponse{}
-	if err := c.callRestAPI(req, &res); err != nil {
+	res, err := c.callRestAPI(req)
+	if err != nil {
 		return nil, err
 	}
 
-	return &res, nil
+	return res, nil
 
 }
