@@ -75,9 +75,9 @@ func addCredentials(data interface{}, username string, password string) (*string
 	mapped["password"] = password
 
     // iterate through
-    // for field, val := range mapped {
-    //         fmt.Println("KV Pair: ", field, val)
-    // }
+    for field, val := range mapped {
+        fmt.Println("KV Pair: ", field, val)
+    }
 
 	jsonStr2, err := json.Marshal(mapped)
 	if err != nil {
