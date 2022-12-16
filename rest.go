@@ -62,7 +62,7 @@ func (c *RestClient) callRestAPI(req *http.Request) (*RestResponse, error) {
 
 func (c *RestClient) addCredentials(data interface{}) (*string, error) {
    
-	mapped := make(map[string]interface{})
+	var mapped map[string]interface{}
     jsonStr, err := json.Marshal(data)
 	if err != nil {
         return nil, err
@@ -70,6 +70,10 @@ func (c *RestClient) addCredentials(data interface{}) (*string, error) {
 
     if err := json.Unmarshal(jsonStr, &mapped); err != nil {
 		return nil, err
+	}
+	// Avoid > panic: assignment to entry in nil map
+	if len(mapped) == 0 {
+		mapped = make(map[string]interface{})
 	}
 
 	mapped["username"] = c.username
