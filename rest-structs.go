@@ -14,3 +14,7 @@ type SendSMSRestModel struct {
 	From	string
 	Text	string
 }
+
+type GetDeliveries2RestModel struct { 
+	RecID	int64
+}

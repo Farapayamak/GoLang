@@ -120,10 +120,9 @@ func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 
 
 
-func (c *RestClient) GetDeliveries2(recId int64) (*RestResponse, error) {
+func (c *RestClient) GetDeliveries2(args *GetDeliveries2RestModel) (*RestResponse, error) {
 	
-	args := struct {recID int64}{recId}
-	body, err := c.addCredentials(&args)
+	body, err := c.addCredentials(args)
 	if err != nil {
 		return nil, err
 	}
