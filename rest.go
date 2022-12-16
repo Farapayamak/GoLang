@@ -2,7 +2,6 @@ package farapayamak
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"net/http"
 	"time"
@@ -14,13 +13,6 @@ type RestClient struct {
 	HTTPClient	*http.Client
 	username	string
 	password	string
-}
-
-
-type RestResponse struct {
-	Value			string
-	RetStatus		int
-	StrRetStatus	string
 }
 
 
@@ -41,7 +33,6 @@ func InitRestClient(username string, password string) *RestClient {
 func (c *RestClient) CallRestAPI(req *http.Request, v *RestResponse) error {
 	
 	req.Header.Set("Accept", "application/json; charset=utf-8")
-	// req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.apiKey))
 
 	res, err := c.HTTPClient.Do(req)
 	if err != nil {
@@ -50,13 +41,7 @@ func (c *RestClient) CallRestAPI(req *http.Request, v *RestResponse) error {
 
 	defer res.Body.Close()
 
-	// Try to unmarshall into RestResponse
 	if res.StatusCode != http.StatusOK {
-		var errRes RestResponse
-		if err = json.NewDecoder(res.Body).Decode(&errRes); err == nil {
-			return errors.New(errRes.StrRetStatus)
-		}
-
 		return fmt.Errorf("unknown error, status code: %d", res.StatusCode)
 	}
 
@@ -74,19 +59,46 @@ func (c *RestClient) CallRestAPI(req *http.Request, v *RestResponse) error {
 }
 
 
+func addCredentials(data interface{}, username string, password string) (*string, error) {
+   
+	var mapped map[string]interface{}
+    jsonStr, err := json.Marshal(data)
+	if err != nil {
+        return nil, err
+    }
 
-type SendSMSRestModel struct {
-	to		string
-	from	string
-	text	string
+    if err := json.Unmarshal(jsonStr, &mapped); err != nil {
+		return nil, err
+	}
+
+	mapped["username"] = username
+	mapped["password"] = password
+
+    // iterate through
+    // for field, val := range mapped {
+    //         fmt.Println("KV Pair: ", field, val)
+    // }
+
+	jsonStr2, err := json.Marshal(mapped)
+	if err != nil {
+		return nil, err
+	}
+
+	result := string(jsonStr2)
+	return &result, nil
 }
+
+
 
 func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 
-	jsonBody := []byte(fmt.Sprintf("{\"username\": \"%s\", \"password\": \"%s\"}", c.username, c.password))
- 	bodyReader := bytes.NewReader(jsonBody)
+	body, err := addCredentials(args, c.username, c.password)
+	if err != nil {
+		return nil, err
+	}
+	jsonBody := []byte(*body)
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/SendSMS", c.baseURL), bodyReader)
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/SendSMS", c.baseURL), bytes.NewReader(jsonBody))
 	if err != nil {
 		return nil, err
 	}
