@@ -16,5 +16,5 @@ type SendSMSRestModel struct {
 }
 
 type GetDeliveries2RestModel struct { 
-	RecID	int
+	RecId	int		`json:"recID"`
 }
