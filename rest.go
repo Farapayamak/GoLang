@@ -26,7 +26,7 @@ func InitRestClient(username string, password string) *RestClient {
 		baseURL: "https://rest.payamak-panel.com/api/SendSMS",
 		username: username,
 		password: password,
-		debug: false,
+		debug: true,
 	}
 }
 
@@ -102,6 +102,32 @@ func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 
 	// "POST" or http.MethodPost
 	req, err := http.NewRequest("POST", fmt.Sprintf("%s/SendSMS", c.baseURL), bytes.NewReader([]byte(*body)))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
+
+	res, err := c.callRestAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+
+
+
+func (c *RestClient) GetDeliveries2(recId int64) (*RestResponse, error) {
+	
+	body, err := c.addCredentials(struct {recID int64}{recId})
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/GetDeliveries2", c.baseURL), bytes.NewReader([]byte(*body)))
 	if err != nil {
 		return nil, err
 	}
