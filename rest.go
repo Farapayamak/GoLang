@@ -13,6 +13,7 @@ type RestClient struct {
 	HTTPClient	*http.Client
 	username	string
 	password	string
+	debug		bool
 }
 
 
@@ -25,12 +26,13 @@ func InitRestClient(username string, password string) *RestClient {
 		baseURL: "https://rest.payamak-panel.com/api/SendSMS",
 		username: username,
 		password: password,
+		debug: true,
 	}
 }
 
 
 // http.MethodPost
-func (c *RestClient) CallRestAPI(req *http.Request, v *RestResponse) error {
+func (c *RestClient) callRestAPI(req *http.Request, v *RestResponse) error {
 	
 	req.Header.Set("Accept", "application/json; charset=utf-8")
 
@@ -59,7 +61,7 @@ func (c *RestClient) CallRestAPI(req *http.Request, v *RestResponse) error {
 }
 
 
-func addCredentials(data interface{}, username string, password string) (*string, error) {
+func (c *RestClient) addCredentials(data interface{}) (*string, error) {
    
 	var mapped map[string]interface{}
     jsonStr, err := json.Marshal(data)
@@ -71,13 +73,16 @@ func addCredentials(data interface{}, username string, password string) (*string
 		return nil, err
 	}
 
-	mapped["username"] = username
-	mapped["password"] = password
+	mapped["username"] = c.username
+	mapped["password"] = c.password
 
-    // iterate through
-    for field, val := range mapped {
-        fmt.Println("KV Pair: ", field, val)
-    }
+	if c.debug {
+		// iterate through
+		for field, val := range mapped {
+			fmt.Println("KV Pair: ", field, val)
+		}
+	}
+    
 
 	jsonStr2, err := json.Marshal(mapped)
 	if err != nil {
@@ -92,7 +97,7 @@ func addCredentials(data interface{}, username string, password string) (*string
 
 func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 
-	body, err := addCredentials(args, c.username, c.password)
+	body, err := c.addCredentials(args)
 	if err != nil {
 		return nil, err
 	}
@@ -106,7 +111,7 @@ func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	res := RestResponse{}
-	if err := c.CallRestAPI(req, &res); err != nil {
+	if err := c.callRestAPI(req, &res); err != nil {
 		return nil, err
 	}
 
