@@ -130,17 +130,17 @@ func (c *SoapClient) setQueryParams(baseURL string, method string, data interfac
 
 func (c *SoapClient) SendSimpleSMS2(args *SendSimpleSMS2SoapModel) (*string, error) {
 
-	// url, err := c.setQueryParams(args)
-	// if err != nil {
-	// 	return nil, err
-	// }
+	urlWithParams, err := c.setQueryParams(c.sendURL, "SendSimpleSMS2", args)
+	if err != nil {
+		return nil, err
+	}
 
 	if c.debug {
-		fmt.Println(c.setQueryParams(c.sendURL, "SendSimpleSMS2", args))
+		fmt.Println(*urlWithParams)
 	}
 
 	// "GET" or http.MethodGet
-	req, err := http.NewRequest("GET", c.setQueryParams(c.sendURL, "SendSimpleSMS2", args), nil)
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
 	if err != nil {
 		return nil, err
 	}
