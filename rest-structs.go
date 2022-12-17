@@ -25,3 +25,9 @@ type GetMessagesRestModel struct {
 	Index		int
 	Count		int
 }
+
+type BaseServiceNumberRestModel struct {
+	Text		string
+	To			string
+	BodyId		int
+}

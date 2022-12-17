@@ -200,3 +200,77 @@ func (c *RestClient) GetCredit() (*RestResponse, error) {
 	return res, nil
 
 }
+
+
+func (c *RestClient) GetBasePrice() (*RestResponse, error) {
+	
+	var args interface {}
+	body, err := c.addCredentials(&args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/GetBasePrice", c.baseURL), bytes.NewReader([]byte(*body)))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
+
+	res, err := c.callRestAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+
+func (c *RestClient) GetUserNumbers() (*RestResponse, error) {
+	
+	var args interface {}
+	body, err := c.addCredentials(&args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/GetUserNumbers", c.baseURL), bytes.NewReader([]byte(*body)))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
+
+	res, err := c.callRestAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+
+func (c *RestClient) BaseServiceNumber(args *BaseServiceNumberRestModel) (*RestResponse, error) {
+	
+	body, err := c.addCredentials(args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%s/BaseServiceNumber", c.baseURL), bytes.NewReader([]byte(*body)))
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
+
+	res, err := c.callRestAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
