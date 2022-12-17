@@ -10,7 +10,7 @@ import (
 
 type RestClient struct {
 	baseURL		string
-	HTTPClient	*http.Client
+	httpClient	*http.Client
 	username	string
 	password	string
 	debug		bool
@@ -20,7 +20,7 @@ type RestClient struct {
 
 func InitRestClient(username string, password string) *RestClient {
 	return &RestClient {
-		HTTPClient: &http.Client {
+		httpClient: &http.Client {
 			Timeout: 1 * time.Minute,
 		},
 		baseURL: "https://rest.payamak-panel.com/api/SendSMS",
@@ -36,7 +36,7 @@ func (c *RestClient) callRestAPI(req *http.Request) (*RestResponse, error) {
 	
 	req.Header.Set("Accept", "application/json; charset=utf-8")
 
-	res, err := c.HTTPClient.Do(req)
+	res, err := c.httpClient.Do(req)
 	if err != nil {
 		return nil, err
 	}
