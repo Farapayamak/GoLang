@@ -62,15 +62,17 @@ func (c *SoapClient) callSoapAPI(req *http.Request) (*string, error) {
 	if err != nil {
 		return nil, err
 	}
-	if c.debug {
-		fmt.Printf("%+v\n", response)
-	}
 
 	result := string(response);
+	if c.debug {
+		fmt.Printf("%+v\n", result)
+	}
+
 	return &result, nil
 }
 
 
+// Send web service methods
 
 func (c *SoapClient) GetCredit() (*string, error) {
 
@@ -86,7 +88,29 @@ func (c *SoapClient) GetCredit() (*string, error) {
 		return nil, err
 	}
 
-	// req.Header.Set("Content-Type", "application/json; charset=utf-8")
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
+
+
+func (c *SoapClient) GetDeliveries() (*string, error) {
+
+	args := ""
+	// body, err := c.addCredentials(args)
+	// if err != nil {
+	// 	return nil, err
+	// }
+
+	// "GET" or http.MethodGet
+	req, err := http.NewRequest("GET", fmt.Sprintf(c.sendURL, "GetCredit", c.username, c.password), bytes.NewReader([]byte(args)))
+	if err != nil {
+		return nil, err
+	}
 
 	res, err := c.callSoapAPI(req)
 	if err != nil {
