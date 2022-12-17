@@ -7,3 +7,10 @@ type SendSimpleSMS2SoapModel struct {
 	Text 	string
 	IsFlash bool
 }
+
+type SendSimpleSMSSoapModel struct {
+	To		[]string
+	From	string
+	Text	string
+	IsFlash bool
+}

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"time"
-	"bytes"
+	// "bytes"
 	"io"
 	// "reflect"
 )
@@ -80,13 +80,13 @@ func (c *SoapClient) callSoapAPI(req *http.Request) (*string, error) {
 func (c *SoapClient) GetCredit() (*string, error) {
 
 	args := ""
-	// body, err := c.addCredentials(args)
-	// if err != nil {
-	// 	return nil, err
-	// }
+	urlWithParams, err := c.setQueryParams(c.sendURL, "GetCredit", args)
+	if err != nil {
+		return nil, err
+	}
 
 	// "GET" or http.MethodGet
-	req, err := http.NewRequest("GET", fmt.Sprintf(c.sendURL, "GetCredit", c.username, c.password), bytes.NewReader([]byte(args)))
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -181,6 +181,32 @@ func (c *SoapClient) setQueryParams(endpoint string, method string, data interfa
 	return &finalUrl , nil
 }
 
+
+func (c *SoapClient) SendSimpleSMS(args *SendSimpleSMSSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "SendSimpleSMS", args)
+	if err != nil {
+		return nil, err
+	}
+
+	if c.debug {
+		fmt.Println(*urlWithParams)
+	}
+
+	// "GET" or http.MethodGet
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+
+}
 
 func (c *SoapClient) SendSimpleSMS2(args *SendSimpleSMS2SoapModel) (*string, error) {
 
