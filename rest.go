@@ -35,6 +35,7 @@ func InitRestClient(username string, password string) *RestClient {
 func (c *RestClient) callRestAPI(req *http.Request) (*RestResponse, error) {
 	
 	req.Header.Set("Accept", "application/json; charset=utf-8")
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	res, err := c.httpClient.Do(req)
 	if err != nil {
@@ -115,8 +116,6 @@ func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 		return nil, err
 	}
 
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
-
 	res, err := c.callRestAPI(req)
 	if err != nil {
 		return nil, err
@@ -141,8 +140,6 @@ func (c *RestClient) GetDeliveries2(args *GetDeliveries2RestModel) (*RestRespons
 		return nil, err
 	}
 
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
-
 	res, err := c.callRestAPI(req)
 	if err != nil {
 		return nil, err
@@ -164,8 +161,6 @@ func (c *RestClient) GetMessages(args *GetMessagesRestModel) (*RestResponse, err
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	res, err := c.callRestAPI(req)
 	if err != nil {
@@ -190,8 +185,6 @@ func (c *RestClient) GetCredit() (*RestResponse, error) {
 		return nil, err
 	}
 
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
-
 	res, err := c.callRestAPI(req)
 	if err != nil {
 		return nil, err
@@ -214,8 +207,6 @@ func (c *RestClient) GetBasePrice() (*RestResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	res, err := c.callRestAPI(req)
 	if err != nil {
@@ -240,8 +231,6 @@ func (c *RestClient) GetUserNumbers() (*RestResponse, error) {
 		return nil, err
 	}
 
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
-
 	res, err := c.callRestAPI(req)
 	if err != nil {
 		return nil, err
@@ -263,8 +252,6 @@ func (c *RestClient) BaseServiceNumber(args *BaseServiceNumberRestModel) (*RestR
 	if err != nil {
 		return nil, err
 	}
-
-	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	res, err := c.callRestAPI(req)
 	if err != nil {
