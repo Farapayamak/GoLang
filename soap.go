@@ -72,7 +72,7 @@ func (c *SoapClient) callSoapAPI(req *http.Request) (*string, error) {
 
 
 
-func (c *SoapClient) GetCredit() (*string, error) {
+func (c *SoapClient) GetCreditX() (*string, error) {
 
 	args := ""
 	// body, err := c.addCredentials(args)
