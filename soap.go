@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"time"
-	// "bytes"
+	"bytes"
 	"io"
 )
 
@@ -74,13 +74,14 @@ func (c *SoapClient) callSoapAPI(req *http.Request) (*string, error) {
 
 func (c *SoapClient) GetCredit() (*string, error) {
 
+	args := ""
 	// body, err := c.addCredentials(args)
 	// if err != nil {
 	// 	return nil, err
 	// }
 
 	// "POST" or http.MethodPost
-	req, err := http.NewRequest("POST", fmt.Sprintf(c.sendURL, "GetCredit"), nil) //bytes.NewReader([]byte(*body))
+	req, err := http.NewRequest("POST", fmt.Sprintf(c.sendURL, "GetCredit"), bytes.NewReader([]byte(args)))
 	if err != nil {
 		return nil, err
 	}
