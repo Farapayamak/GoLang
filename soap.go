@@ -98,7 +98,31 @@ func (c *SoapClient) GetCredit() (*string, error) {
 }
 
 
-func (c *SoapClient) GetDeliveries() (*string, error) {
+// func (c *SoapClient) GetDeliveries() (*string, error) {
+
+// 	args := ""
+// 	// body, err := c.addCredentials(args)
+// 	// if err != nil {
+// 	// 	return nil, err
+// 	// }
+
+// 	// "GET" or http.MethodGet
+// 	req, err := http.NewRequest("GET", fmt.Sprintf(c.sendURL, "GetCredit", c.username, c.password), bytes.NewReader([]byte(args)))
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	res, err := c.callSoapAPI(req)
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	return res, nil
+
+// }
+
+
+func (c *SoapClient) SendSimpleSMS2() (*string, error) {
 
 	args := ""
 	// body, err := c.addCredentials(args)
@@ -107,7 +131,7 @@ func (c *SoapClient) GetDeliveries() (*string, error) {
 	// }
 
 	// "GET" or http.MethodGet
-	req, err := http.NewRequest("GET", fmt.Sprintf(c.sendURL, "GetCredit", c.username, c.password), bytes.NewReader([]byte(args)))
+	req, err := http.NewRequest("GET", fmt.Sprintf(c.sendURL, "SendSimpleSMS2", c.username, c.password), bytes.NewReader([]byte(args)))
 	if err != nil {
 		return nil, err
 	}
@@ -120,3 +144,4 @@ func (c *SoapClient) GetDeliveries() (*string, error) {
 	return res, nil
 
 }
+
