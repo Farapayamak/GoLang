@@ -2,11 +2,12 @@ package farapayamak
 
 
 import (
-	"encoding/xml"
+	// "encoding/xml"
 	"fmt"
 	"net/http"
 	"time"
 	// "bytes"
+	"io"
 )
 
 
@@ -37,7 +38,7 @@ func InitSoapClient(username string, password string) *SoapClient {
 
 
 
-func (c *SoapClient) callSoapAPI(req *http.Request) (*interface{}, error) {
+func (c *SoapClient) callSoapAPI(req *http.Request) (*string, error) {
 	
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 
@@ -52,21 +53,26 @@ func (c *SoapClient) callSoapAPI(req *http.Request) (*interface{}, error) {
 		return nil, fmt.Errorf("unknown error, status code: %d", res.StatusCode)
 	}
 
-	var response interface {}
-	if err = xml.NewDecoder(res.Body).Decode(&response); err != nil {
+	// var response interface {}
+	// if err = xml.NewDecoder(res.Body).Decode(&response); err != nil {
+	// 	return nil, err
+	// }
+
+	response, err := io.ReadAll(res.Body)
+	if err != nil {
 		return nil, err
 	}
-
 	if c.debug {
 		fmt.Printf("%+v\n", response)
 	}
 
-	return &response, nil
+	result := string(response);
+	return &result, nil
 }
 
 
 
-func (c *SoapClient) GetCredit() (*interface{}, error) {
+func (c *SoapClient) GetCredit() (*string, error) {
 
 	// body, err := c.addCredentials(args)
 	// if err != nil {
