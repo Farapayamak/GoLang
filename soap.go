@@ -124,14 +124,14 @@ func (c *SoapClient) GetCredit() (*string, error) {
 
 func (c *SoapClient) SendSimpleSMS2() (*string, error) {
 
-	args := ""
+	// args := ""
 	// body, err := c.addCredentials(args)
 	// if err != nil {
 	// 	return nil, err
 	// }
 
 	// "GET" or http.MethodGet
-	req, err := http.NewRequest("GET", fmt.Sprintf(c.sendURL, "SendSimpleSMS2", c.username, c.password), bytes.NewReader([]byte(args)))
+	req, err := http.NewRequest("GET", fmt.Sprintf(c.sendURL, "SendSimpleSMS2", c.username, c.password), nil)
 	if err != nil {
 		return nil, err
 	}
