@@ -121,17 +121,26 @@ func (c *SoapClient) GetCredit() (*string, error) {
 
 // }
 
+func (c *SoapClient) setQueryParams(baseURL string, method string, data interface{}) (*string, error) {
+	
+	url := fmt.Sprintf(baseURL, method, c.username, c.password)
+	return &url, nil
+}
 
-func (c *SoapClient) SendSimpleSMS2() (*string, error) {
 
-	// args := ""
-	// body, err := c.addCredentials(args)
+func (c *SoapClient) SendSimpleSMS2(args *SendSimpleSMS2SoapModel) (*string, error) {
+
+	// url, err := c.setQueryParams(args)
 	// if err != nil {
 	// 	return nil, err
 	// }
 
+	if c.debug {
+		fmt.Println(c.setQueryParams(c.sendURL, "SendSimpleSMS2", args))
+	}
+
 	// "GET" or http.MethodGet
-	req, err := http.NewRequest("GET", fmt.Sprintf(c.sendURL, "SendSimpleSMS2", c.username, c.password), nil)
+	req, err := http.NewRequest("GET", c.setQueryParams(c.sendURL, "SendSimpleSMS2", args), nil)
 	if err != nil {
 		return nil, err
 	}
