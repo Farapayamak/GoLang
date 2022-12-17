@@ -2,12 +2,15 @@ package farapayamak
 
 
 import (
+	"encoding/json"
 	// "encoding/xml"
+	"net/url"
 	"fmt"
 	"net/http"
 	"time"
 	"bytes"
 	"io"
+	// "reflect"
 )
 
 
@@ -28,7 +31,7 @@ func InitSoapClient(username string, password string) *SoapClient {
 		httpClient: &http.Client {
 			Timeout: 1 * time.Minute,
 		},
-		sendURL: "http://api.payamak-panel.com/post/send.asmx/%s?username=%s&password=%s",
+		sendURL: "http://api.payamak-panel.com/post/send.asmx/%s?",
 		username: username,
 		password: password,
 		debug: true,
@@ -121,10 +124,61 @@ func (c *SoapClient) GetCredit() (*string, error) {
 
 // }
 
-func (c *SoapClient) setQueryParams(baseURL string, method string, data interface{}) (*string, error) {
+func (c *SoapClient) setQueryParams(endpoint string, method string, data interface{}) (*string, error) {
 	
-	url := fmt.Sprintf(baseURL, method, c.username, c.password)
-	return &url, nil
+	baseUrl := fmt.Sprintf(endpoint, method)
+
+	var mapped map[string]interface{}
+    jsonStr, err := json.Marshal(data)
+	if err != nil {
+        return nil, err
+    }
+
+    if err := json.Unmarshal(jsonStr, &mapped); err != nil {
+		return nil, err
+	}
+	// Avoid > panic: assignment to entry in nil map
+	if len(mapped) == 0 {
+		mapped = make(map[string]interface{})
+	}
+
+	params := url.Values{}
+	params.Add("username", c.username)
+	params.Add("password", c.password)
+
+	for k, v := range mapped {
+		
+		switch test := v.(type) {
+		case []int:
+			vv := v.([]int)
+			for _, val := range vv {
+				params.Add(k, string(val))
+			}
+			fmt.Println("Adding a list of ", test)
+		case []int64:
+			fmt.Println("float64:")
+		case []string:
+			fmt.Println("float64:")
+		default:
+			params.Add(k, fmt.Sprint(v))
+		}
+
+		// vType := reflect.TypeOf(v)
+		
+		// if vType == "[]int" {
+		// 	if vv, ok := v.([]int); ok {
+		// 		for _, val := range vv {
+		// 			params.Add(k, string(val))
+		// 		}
+		// 	}
+			
+		// } else { 
+		// 	params.Add(k, fmt.Sprint(v)) 
+		// }
+	}
+	finalUrl := baseUrl + params.Encode()
+
+	return &finalUrl , nil
 }
 
 
