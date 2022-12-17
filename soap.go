@@ -72,7 +72,7 @@ func (c *SoapClient) callSoapAPI(req *http.Request) (*string, error) {
 
 
 
-func (c *SoapClient) GetCreditX() (*string, error) {
+func (c *SoapClient) GetCredit() (*string, error) {
 
 	args := ""
 	// body, err := c.addCredentials(args)
@@ -80,8 +80,8 @@ func (c *SoapClient) GetCreditX() (*string, error) {
 	// 	return nil, err
 	// }
 
-	// "POST" or http.MethodPost
-	req, err := http.NewRequest("POST", fmt.Sprintf(c.sendURL, "GetCredit"), bytes.NewReader([]byte(args)))
+	// "GET" or http.MethodGet
+	req, err := http.NewRequest("GET", fmt.Sprintf(c.sendURL, "GetCredit", c.username, c.password), bytes.NewReader([]byte(args)))
 	if err != nil {
 		return nil, err
 	}
