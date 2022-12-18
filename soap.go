@@ -10,7 +10,7 @@ import (
 	"time"
 	// "bytes"
 	"io"
-	// "reflect"
+	"reflect"
 )
 
 
@@ -148,33 +148,14 @@ func (c *SoapClient) setQueryParams(endpoint string, method string, data interfa
 
 	for k, v := range mapped {
 		
-		switch test := v.(type) {
-		case []int:
-			vv := v.([]int)
+		if reflect.TypeOf(v).String() == "[]interface {}" {
+			vv := v.([]interface{})
 			for _, val := range vv {
-				params.Add(k, string(val))
+				params.Add(k, fmt.Sprint(val))
 			}
-			fmt.Println("Adding a list of ", test)
-		case []int64:
-			fmt.Println("float64:")
-		case []string:
-			fmt.Println("float64:")
-		default:
+		} else {
 			params.Add(k, fmt.Sprint(v))
 		}
-
-		// vType := reflect.TypeOf(v)
-		
-		// if vType == "[]int" {
-		// 	if vv, ok := v.([]int); ok {
-		// 		for _, val := range vv {
-		// 			params.Add(k, string(val))
-		// 		}
-		// 	}
-			
-		// } else { 
-		// 	params.Add(k, fmt.Sprint(v)) 
-		// }
 	}
 	finalUrl := baseUrl + params.Encode()
 
