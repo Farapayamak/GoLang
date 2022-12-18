@@ -8,7 +8,6 @@ import (
 	"fmt"
 	"net/http"
 	"time"
-	// "bytes"
 	"io"
 	"reflect"
 )
@@ -16,13 +15,18 @@ import (
 
 
 type SoapClient struct {
-	sendURL		string
-	receiveURL	string
+	sendURL			string
+	receiveURL		string
+	usersURL		string
+	voiceURL		string
+	contactsURL 	string
+	scheduleURL		string
+	bulksURL		string
 
-	httpClient	*http.Client
-	username	string
-	password	string
-	debug		bool
+	httpClient		*http.Client
+	username		string
+	password		string
+	debug			bool
 }
 
 
@@ -32,6 +36,12 @@ func InitSoapClient(username string, password string) *SoapClient {
 			Timeout: 1 * time.Minute,
 		},
 		sendURL: "http://api.payamak-panel.com/post/send.asmx/%s?",
+		receiveURL: "http://api.payamak-panel.com/post/receive.asmx/%s?",
+		usersURL: "http://api.payamak-panel.com/post/Users.asmx/%s?",
+		voiceURL: "http://api.payamak-panel.com/post/Voice.asmx/%s?",
+		contactsURL: "http://api.payamak-panel.com/post/contacts.asmx/%s?",
+		scheduleURL: "http://api.payamak-panel.com/post/Schedule.asmx/%s?",
+		bulksURL: "http://api.payamak-panel.com/post/newbulks.asmx/%s?",
 		username: username,
 		password: password,
 		debug: true,
@@ -79,7 +89,7 @@ func (c *SoapClient) callSoapAPI(req *http.Request) (*string, error) {
 
 func (c *SoapClient) GetCredit() (*string, error) {
 
-	args := ""
+	var args interface{}
 	urlWithParams, err := c.setQueryParams(c.sendURL, "GetCredit", args)
 	if err != nil {
 		return nil, err
