@@ -87,3 +87,60 @@ type SendMultipleSMS2SoapModel struct {
 	RecId		[]int64
 	Status		[]byte
 }
+
+// receive
+type ChangeMessageIsReadSoapModel struct {
+	MsgIds	string
+}
+
+type GetInboxCountSoapModel struct {
+	IsRead	bool
+}
+
+type GetLatestReceiveMsgSoapModel struct {
+	Sender		string
+	Receiver	string
+}
+
+type GetMessagesSoapModel struct {
+	Location	int
+	From		string
+	Index		int
+	Count		int
+}
+
+type GetMessagesAfterIDSoapModel struct {
+	Location	int
+	From		string
+	Count		int
+	MsgId		int
+}
+
+type GetMessagesFilterByDateSoapModel struct {
+	Location	int
+	From		string
+	Index		int
+	Count		int
+	DateFrom	string
+	DateTo		string
+	IsRead		bool
+}
+
+type GetMessagesReceptionsSoapModel struct {
+	MsgId		int
+	FromRows	int
+}
+
+type GetMessagesWithChangeIsReadSoapModel struct {
+	Location		int
+	From			string
+	Index			int
+	Count			int
+	IsRead			bool
+	changeIsRead	bool
+}
+
+type RemoveMessagesSoapModel struct {
+	Location	string
+	MsgIds		string
+}

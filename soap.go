@@ -403,3 +403,217 @@ func (c *SoapClient) SendMultipleSMS2(args *SendMultipleSMS2SoapModel) (*string,
 
 	return res, nil
 }
+
+
+
+// Receive web service methods
+
+func (c *SoapClient) ChangeMessageIsRead(args *ChangeMessageIsReadSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.receiveURL, "ChangeMessageIsRead", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetInboxCount(args *GetInboxCountSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.receiveURL, "GetInboxCount", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetLatestReceiveMsg(args *GetLatestReceiveMsgSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.receiveURL, "GetLatestReceiveMsg", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetMessages(args *GetMessagesSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.receiveURL, "GetMessages", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetMessagesAfterID(args *GetMessagesAfterIDSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.receiveURL, "GetMessagesAfterID", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetMessagesFilterByDate(args *GetMessagesFilterByDateSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.receiveURL, "GetMessagesFilterByDate", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetMessagesReceptions(args *GetMessagesReceptionsSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.receiveURL, "GetMessagesReceptions", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetMessagesWithChangeIsRead(args *GetMessagesWithChangeIsReadSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.receiveURL, "GetMessagesWithChangeIsRead", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetOutBoxCount() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.receiveURL, "GetOutBoxCount", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) RemoveMessages(args *RemoveMessagesSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.receiveURL, "RemoveMessages", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
