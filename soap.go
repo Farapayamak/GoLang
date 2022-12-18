@@ -1196,3 +1196,300 @@ func (c *SoapClient) UploadVoiceFile(args *UploadVoiceFileSoapModel) (*string, e
 
 	return res, nil
 }
+
+
+// Contacts web service methods
+
+func (c *SoapClient) AddContact(args *AddContactSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "AddContact", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) AddContactEvents(args *AddContactEventsSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "AddContactEvents", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) AddGroup(args *AddGroupSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "AddGroup", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) ChangeContact(args *ChangeContactSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "ChangeContact", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) ChangeGroup(args *ChangeGroupSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "ChangeGroup", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) CheckMobileExistInContact(args *CheckMobileExistInContactSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "CheckMobileExistInContact", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetContactEvents(args *GetContactEventsSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "GetContactEvents", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetContacts(args *GetContactsSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "GetContacts", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetContactsByID(args *GetContactsByIDSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "GetContactsByID", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetGroups() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "GetGroups", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) MergeGroups(args *MergeGroupsSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "MergeGroups", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) RemoveContact(args *RemoveContactSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "RemoveContact", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) RemoveContactByContactID(args *RemoveContactByContactIDSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "RemoveContactByContactID", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) RemoveGroup(args *RemoveGroupSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.contactsURL, "RemoveGroup", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}

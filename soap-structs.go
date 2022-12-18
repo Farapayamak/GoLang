@@ -297,3 +297,106 @@ type UploadVoiceFileSoapModel struct {
 	Title				string
 	Base64StringFile	string
 }
+
+// Contacts
+
+type AddContactSoapModel struct {
+	GroupIds			string
+	FirstName			string
+	LastName			string
+	Nickname			string
+	Corporation			string
+	MobileNumber		string
+	Phone				string
+	Fax					string
+	Birthdate			string
+	Email				string
+	Gender				byte
+	Province			int
+	City				int
+	Address				string
+	PostalCode			string
+	Additionaldate		string
+	Additionaltext		string
+	Descriptions		string
+}
+
+type AddContactEventsSoapModel struct {
+	ContactId		int
+	EventName		string
+	EventType		byte
+	EventDate		string
+}
+
+type AddGroupSoapModel struct {
+	GroupName		string
+	Descriptions	string
+	ShowToChilds	bool
+}
+
+type ChangeContactSoapModel struct {
+	ContactId			int
+	MobileNumber		string
+	FirstName			string
+	LastName			string
+	Nickname			string
+	Corporation			string
+	Phone				string
+	Fax					string
+	Email				string
+	Gender				byte
+	Province			int
+	City				int
+	Address				string
+	PostalCode			string
+	Additionaltext		string
+	Descriptions		string
+	ContactStatus		int
+}
+
+type ChangeGroupSoapModel struct {
+	GroupId			int
+	GroupName		string
+	Descriptions	string
+	ShowToChilds	bool
+	GroupStatus		byte
+}
+
+type CheckMobileExistInContactSoapModel struct {
+	MobileNumber	string
+}
+
+type GetContactEventsSoapModel struct {
+	ContactId	int
+}
+
+type GetContactsSoapModel struct {
+	GroupId		int
+	Keyword		string
+	From		int
+	Count		int
+}
+
+type GetContactsByIDSoapModel struct {
+	ContactId	int
+	status		int
+}
+
+type MergeGroupsSoapModel struct {
+	OriginGroupId		int
+	DestinationGroupId	int
+	DeleteOriginGroup	bool
+}
+
+type RemoveContactSoapModel struct {
+	MobileNumber	string
+}
+
+type RemoveContactByContactIDSoapModel struct {
+	ContactId	int
+}
+
+type RemoveGroupSoapModel struct {
+	GroupId		int
+}
+
