@@ -169,6 +169,10 @@ func (c *SoapClient) setQueryParams(endpoint string, method string, data interfa
 	}
 	finalUrl := baseUrl + params.Encode()
 
+	if c.debug {
+		fmt.Println(finalUrl)
+	}
+
 	return &finalUrl , nil
 }
 
@@ -180,11 +184,6 @@ func (c *SoapClient) SendSimpleSMS(args *SendSimpleSMSSoapModel) (*string, error
 		return nil, err
 	}
 
-	if c.debug {
-		fmt.Println(*urlWithParams)
-	}
-
-	// "GET" or http.MethodGet
 	req, err := http.NewRequest("GET", *urlWithParams, nil)
 	if err != nil {
 		return nil, err
@@ -206,11 +205,6 @@ func (c *SoapClient) SendSimpleSMS2(args *SendSimpleSMS2SoapModel) (*string, err
 		return nil, err
 	}
 
-	if c.debug {
-		fmt.Println(*urlWithParams)
-	}
-
-	// "GET" or http.MethodGet
 	req, err := http.NewRequest("GET", *urlWithParams, nil)
 	if err != nil {
 		return nil, err
