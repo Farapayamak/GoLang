@@ -85,55 +85,6 @@ func (c *SoapClient) callSoapAPI(req *http.Request) (*string, error) {
 }
 
 
-// Send web service methods
-
-func (c *SoapClient) GetCredit() (*string, error) {
-
-	var args interface{}
-	urlWithParams, err := c.setQueryParams(c.sendURL, "GetCredit", args)
-	if err != nil {
-		return nil, err
-	}
-
-	// "GET" or http.MethodGet
-	req, err := http.NewRequest("GET", *urlWithParams, nil)
-	if err != nil {
-		return nil, err
-	}
-
-	res, err := c.callSoapAPI(req)
-	if err != nil {
-		return nil, err
-	}
-
-	return res, nil
-
-}
-
-
-// func (c *SoapClient) GetDeliveries() (*string, error) {
-
-// 	args := ""
-// 	// body, err := c.addCredentials(args)
-// 	// if err != nil {
-// 	// 	return nil, err
-// 	// }
-
-// 	// "GET" or http.MethodGet
-// 	req, err := http.NewRequest("GET", fmt.Sprintf(c.sendURL, "GetCredit", c.username, c.password), bytes.NewReader([]byte(args)))
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	res, err := c.callSoapAPI(req)
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	return res, nil
-
-// }
-
 func (c *SoapClient) setQueryParams(endpoint string, method string, data interface{}) (*string, error) {
 	
 	baseUrl := fmt.Sprintf(endpoint, method)
@@ -177,6 +128,157 @@ func (c *SoapClient) setQueryParams(endpoint string, method string, data interfa
 }
 
 
+// Send web service methods
+
+func (c *SoapClient) GetCredit() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.sendURL, "GetCredit", args)
+	if err != nil {
+		return nil, err
+	}
+
+	// "GET" or http.MethodGet
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetDeliveries(args *GetDeliveriesSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "GetDeliveries", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetDeliveries3(args *GetDeliveries3SoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "GetDeliveries3", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetSmsPrice(args *GetSmsPriceSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "GetSmsPrice", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) SendByBaseNumber(args *SendByBaseNumberSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "SendByBaseNumber", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) SendByBaseNumber2(args *SendByBaseNumber2SoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "SendByBaseNumber2", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) SendByBaseNumber3(args *SendByBaseNumber3SoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "SendByBaseNumber3", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
 func (c *SoapClient) SendSimpleSMS(args *SendSimpleSMSSoapModel) (*string, error) {
 
 	urlWithParams, err := c.setQueryParams(c.sendURL, "SendSimpleSMS", args)
@@ -195,8 +297,8 @@ func (c *SoapClient) SendSimpleSMS(args *SendSimpleSMSSoapModel) (*string, error
 	}
 
 	return res, nil
-
 }
+
 
 func (c *SoapClient) SendSimpleSMS2(args *SendSimpleSMS2SoapModel) (*string, error) {
 
@@ -216,6 +318,88 @@ func (c *SoapClient) SendSimpleSMS2(args *SendSimpleSMS2SoapModel) (*string, err
 	}
 
 	return res, nil
-
 }
 
+
+func (c *SoapClient) SendSms(args *SendSmsSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "SendSms", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) SendSms2(args *SendSms2SoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "SendSms2", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) SendMultipleSMS(args *SendMultipleSMSSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "SendMultipleSMS", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) SendMultipleSMS2(args *SendMultipleSMS2SoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.sendURL, "SendMultipleSMS2", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
