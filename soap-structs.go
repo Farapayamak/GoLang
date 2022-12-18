@@ -400,3 +400,46 @@ type RemoveGroupSoapModel struct {
 	GroupId		int
 }
 
+// Schedule
+
+type AddNewMultipleScheduleSoapModel struct {
+	To					[]string
+	From				string
+	Text				[]string
+	IsFlash				bool
+	ScheduleDateTime	[]string
+	Period				string
+}
+
+type AddNewUsanceSoapModel struct {
+	To						string
+	From					string
+	Text					string
+	IsFlash					bool
+	ScheduleStartDateTime	string
+	Countrepeat				int
+	ScheduleEndDateTime		string
+	PeriodType				string
+}
+
+type AddScheduleSoapModel struct {
+	To						string
+	From					string
+	Text					string
+	IsFlash					bool
+	ScheduleDateTime		string
+	Period					string
+}
+
+type GetScheduleDetailsSoapModel struct {
+	ScheduleId	int
+}
+
+type GetScheduleStatusSoapModel struct {
+	ScheduleId	int
+}
+
+type RemoveScheduleSoapModel struct {
+	ScheduleId	int
+}
+

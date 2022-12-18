@@ -1493,3 +1493,129 @@ func (c *SoapClient) RemoveGroup(args *RemoveGroupSoapModel) (*string, error) {
 
 	return res, nil
 }
+
+// Schedule web service methods
+
+func (c *SoapClient) AddNewMultipleSchedule(args *AddNewMultipleScheduleSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.scheduleURL, "AddNewMultipleSchedule", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+func (c *SoapClient) AddNewUsance(args *AddNewUsanceSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.scheduleURL, "AddNewUsance", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) AddSchedule(args *AddScheduleSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.scheduleURL, "AddSchedule", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetScheduleDetails(args *GetScheduleDetailsSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.scheduleURL, "GetScheduleDetails", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetScheduleStatus(args *GetScheduleStatusSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.scheduleURL, "GetScheduleStatus", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) RemoveSchedule(args *RemoveScheduleSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.scheduleURL, "RemoveSchedule", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
