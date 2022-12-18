@@ -1131,3 +1131,68 @@ func (c *SoapClient) RemoveUser(args *RemoveUserSoapModel) (*string, error) {
 
 	return res, nil
 }
+
+
+// Voice web service methods
+
+func (c *SoapClient) SendBulkSpeechText(args *SendBulkSpeechTextSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.voiceURL, "SendBulkSpeechText", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) SendBulkVoiceSMS(args *SendBulkVoiceSMSSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.voiceURL, "SendBulkVoiceSMS", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) UploadVoiceFile(args *UploadVoiceFileSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.voiceURL, "UploadVoiceFile", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}

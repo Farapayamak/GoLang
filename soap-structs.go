@@ -275,3 +275,25 @@ type RemoveUserSoapModel struct {
 	TargetUsername	string
 }
 
+// voice
+
+type SendBulkSpeechTextSoapModel struct {
+	Title		string
+	Body		string
+	Receivers	string
+	DateToSend	string
+	RepeatCount	int
+}
+
+type SendBulkVoiceSMSSoapModel struct {
+	Title		string
+	VoiceFileId int
+	Receivers	string
+	DateToSend	string
+	RepeatCount	int
+}
+
+type UploadVoiceFileSoapModel struct {
+	Title				string
+	Base64StringFile	string
+}
