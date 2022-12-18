@@ -617,3 +617,517 @@ func (c *SoapClient) RemoveMessages(args *RemoveMessagesSoapModel) (*string, err
 
 	return res, nil
 }
+
+
+// Users web service methods
+
+func (c *SoapClient) AddUser(args *AddUserSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "AddUser", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) AddUserWithLocation(args *AddUserWithLocationSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "AddUserWithLocation", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) AddUserWithMobileNumber(args *AddUserWithMobileNumberSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "AddUserWithMobileNumber", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) AddUserWithMobileNumber2(args *AddUserWithMobileNumber2SoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "AddUserWithMobileNumber2", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) AddUserWithUserNameAndPass(args *AddUserWithUserNameAndPassSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "AddUserWithUserNameAndPass", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) AuthenticateUser() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.usersURL, "AuthenticateUser", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) ChangeUserCredit(args *ChangeUserCreditSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "ChangeUserCredit", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) DeductUserCredit(args *DeductUserCreditSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "DeductUserCredit", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) ForgotPassword(args *ForgotPasswordSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "ForgotPassword", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetCities(args *GetCitiesSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetCities", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetEnExpireDate() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetEnExpireDate", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetExpireDate() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetExpireDate", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetProvinces() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetProvinces", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetUserBasePrice(args *GetUserBasePriceSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetUserBasePrice", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetUserCredit(args *GetUserCreditSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetUserCredit", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetUserCredit2() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetUserCredit2", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetUserDetails(args *GetUserDetailsSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetUserDetails", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetUserIsExist(args *GetUserIsExistSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetUserIsExist", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetUserNumbers() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetUserNumbers", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetUserTransactions(args *GetUserTransactionsSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetUserTransactions", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetUserWallet() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetUserWallet", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetUserWalletTransaction(args *GetUserWalletTransactionSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetUserWalletTransaction", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetUsers() (*string, error) {
+
+	var args interface{}
+	urlWithParams, err := c.setQueryParams(c.usersURL, "GetUsers", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) RemoveUser(args *RemoveUserSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.usersURL, "RemoveUser", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
