@@ -44,7 +44,7 @@ func InitSoapClient(username string, password string) *SoapClient {
 		bulksURL: "http://api.payamak-panel.com/post/newbulks.asmx/%s?",
 		username: username,
 		password: password,
-		debug: true,
+		debug: false,
 	}
 }
 

@@ -26,7 +26,7 @@ func InitRestClient(username string, password string) *RestClient {
 		baseURL: "https://rest.payamak-panel.com/api/SendSMS",
 		username: username,
 		password: password,
-		debug: true,
+		debug: false,
 	}
 }
 
