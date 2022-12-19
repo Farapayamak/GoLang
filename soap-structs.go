@@ -137,7 +137,7 @@ type GetMessagesWithChangeIsReadSoapModel struct {
 	Index			int
 	Count			int
 	IsRead			bool
-	changeIsRead	bool
+	ChangeIsRead	bool
 }
 
 type RemoveMessagesSoapModel struct {
