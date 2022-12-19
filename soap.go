@@ -1619,3 +1619,130 @@ func (c *SoapClient) RemoveSchedule(args *RemoveScheduleSoapModel) (*string, err
 
 	return res, nil
 }
+
+// Bulks web service methods
+
+func (c *SoapClient) AddNumberBulk(args *AddNumberBulkSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.bulksURL, "AddNumberBulk", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) BulkReception(args *BulkReceptionSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.bulksURL, "BulkReception", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) BulkReceptionCount(args *BulkReceptionCountSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.bulksURL, "BulkReceptionCount", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetBulkDeliveries(args *GetBulkDeliveriesSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.bulksURL, "GetBulkDeliveries", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetBulkDeliveries2(args *GetBulkDeliveries2SoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.bulksURL, "GetBulkDeliveries2", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetBulkDetails(args *GetBulkDetailsSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.bulksURL, "GetBulkDetails", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}

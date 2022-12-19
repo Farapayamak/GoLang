@@ -443,3 +443,34 @@ type RemoveScheduleSoapModel struct {
 	ScheduleId	int
 }
 
+// Bulk
+
+type AddNumberBulkSoapModel struct {
+	From		string
+	Title		string
+	Message 	string
+	Receivers	string
+	DateToSend	string
+}
+
+type BulkReceptionSoapModel struct {
+	BulkId			int
+	MaximumRows		int
+	StartRowIndex	int
+}
+
+type BulkReceptionCountSoapModel struct {
+	BulkId		int
+}
+
+type GetBulkDeliveriesSoapModel struct {
+	RecIds		[]int64
+}
+
+type GetBulkDeliveries2SoapModel struct {
+	RecId		string
+}
+
+type GetBulkDetailsSoapModel struct {
+	BulkId		int
+}
