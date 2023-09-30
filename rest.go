@@ -61,6 +61,35 @@ func (c *RestClient) callRestAPI(req *http.Request) (*RestResponse, error) {
 }
 
 
+func (c *RestClient) callSmartRestAPI(req *http.Request) (*SmartRestResponse, error) {
+	
+	req.Header.Set("Accept", "application/json; charset=utf-8")
+	req.Header.Set("Content-Type", "application/json; charset=utf-8")
+
+	res, err := c.httpClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+
+	defer res.Body.Close()
+
+	if res.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("unknown error, status code: %d", res.StatusCode)
+	}
+
+	response := SmartRestResponse {}
+	if err = json.NewDecoder(res.Body).Decode(&response); err != nil {
+		return nil, err
+	}
+
+	if c.debug {
+		fmt.Printf("%+v\n", response)
+	}
+
+	return &response, nil
+}
+
+
 func (c *RestClient) addCredentials(data interface{}) (*string, error) {
    
 	var mapped map[string]interface{}
@@ -299,7 +328,7 @@ func (c *RestClient) SendMultipleSmartSMS(args *SendMultipleSmartSMSRestModel) (
 		return nil, err
 	}
 
-	res, err := c.callRestAPI(req)
+	res, err := c.callSmartRestAPI(req)
 	if err != nil {
 		return nil, err
 	}
