@@ -69,6 +69,10 @@ restClient.GetCredit()
 restClient.GetBasePrice()
 restClient.GetUserNumbers()
 restClient.BaseServiceNumber(model)
+restClient.SendSmartSMS(model)
+restClient.SendMultipleSmartSMS(model)
+restClient.GetSmartDeliveries2(model)
+restClient.GetSmartDeliveries(model)
 ```
 
 ## SOAP Methods
@@ -183,4 +187,13 @@ soapClient.BulkReceptionCount(model)
 soapClient.GetBulkDeliveries(model)
 soapClient.GetBulkDeliveries2(model)
 soapClient.GetBulkDetails(model)
+```
+
+
+### Smart Web Service
+
+```go
+soapClient.SendSmartSMS(model)
+soapClient.SendMultipleSmartSMS(model)
+soapClient.GetSmartSMSDeliveries(model)
 ```
