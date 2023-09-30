@@ -474,3 +474,27 @@ type GetBulkDeliveries2SoapModel struct {
 type GetBulkDetailsSoapModel struct {
 	BulkId		int
 }
+
+
+
+
+type SendSmartSMSSoapModel struct {
+	To				string
+	Text			string
+	From			string
+	FromSupportOne	string
+	FromSupportTwo	string
+}
+
+type SendMultipleSmartSMSSoapModel struct {
+	To				[]string
+	Text			[]string
+	From			string
+	FromSupportOne	string
+	FromSupportTwo	string
+}
+
+
+type GetSmartDeliveriesSoapModel struct {
+	Ids				[]int64
+}

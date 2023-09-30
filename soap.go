@@ -22,6 +22,7 @@ type SoapClient struct {
 	contactsURL 	string
 	scheduleURL		string
 	bulksURL		string
+	smartURL		string
 
 	httpClient		*http.Client
 	username		string
@@ -42,6 +43,7 @@ func InitSoapClient(username string, password string) *SoapClient {
 		contactsURL: "http://api.payamak-panel.com/post/contacts.asmx/%s?",
 		scheduleURL: "http://api.payamak-panel.com/post/Schedule.asmx/%s?",
 		bulksURL: "http://api.payamak-panel.com/post/newbulks.asmx/%s?",
+		smartURL: "https://api.payamak-panel.com/post/Smartsms.asmx/%s?",
 		username: username,
 		password: password,
 		debug: false,
@@ -1730,6 +1732,69 @@ func (c *SoapClient) GetBulkDeliveries2(args *GetBulkDeliveries2SoapModel) (*str
 func (c *SoapClient) GetBulkDetails(args *GetBulkDetailsSoapModel) (*string, error) {
 
 	urlWithParams, err := c.setQueryParams(c.bulksURL, "GetBulkDetails", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) SendSmartSMS(args *SendSmartSMSSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.smartURL, "SendSmartSMS", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) SendMultipleSmartSMS(args *SendMultipleSmartSMSSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.smartURL, "SendMultipleSmartSMS", args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", *urlWithParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callSoapAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *SoapClient) GetSmartSMSDeliveries(args *GetSmartDeliveriesSoapModel) (*string, error) {
+
+	urlWithParams, err := c.setQueryParams(c.smartURL, "GetSmartSMSDeliveries", args)
 	if err != nil {
 		return nil, err
 	}
