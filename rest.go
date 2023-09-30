@@ -23,7 +23,7 @@ func InitRestClient(username string, password string) *RestClient {
 		httpClient: &http.Client {
 			Timeout: 1 * time.Minute,
 		},
-		baseURL: "https://rest.payamak-panel.com/api/SendSMS",
+		baseURL: "https://rest.payamak-panel.com/api/",
 		username: username,
 		password: password,
 		debug: false,
@@ -111,7 +111,7 @@ func (c *RestClient) SendSMS(args *SendSMSRestModel) (*RestResponse, error) {
 	}
 
 	// "POST" or http.MethodPost
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/SendSMS", c.baseURL), bytes.NewReader([]byte(*body)))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSendSMS/SendSMS", c.baseURL), bytes.NewReader([]byte(*body)))
 	if err != nil {
 		return nil, err
 	}
@@ -135,7 +135,7 @@ func (c *RestClient) GetDeliveries2(args *GetDeliveries2RestModel) (*RestRespons
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/GetDeliveries2", c.baseURL), bytes.NewReader([]byte(*body)))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSendSMS/GetDeliveries2", c.baseURL), bytes.NewReader([]byte(*body)))
 	if err != nil {
 		return nil, err
 	}
@@ -157,7 +157,7 @@ func (c *RestClient) GetMessages(args *GetMessagesRestModel) (*RestResponse, err
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/GetMessages", c.baseURL), bytes.NewReader([]byte(*body)))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSendSMS/GetMessages", c.baseURL), bytes.NewReader([]byte(*body)))
 	if err != nil {
 		return nil, err
 	}
@@ -180,7 +180,7 @@ func (c *RestClient) GetCredit() (*RestResponse, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/GetCredit", c.baseURL), bytes.NewReader([]byte(*body)))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSendSMS/GetCredit", c.baseURL), bytes.NewReader([]byte(*body)))
 	if err != nil {
 		return nil, err
 	}
@@ -203,7 +203,7 @@ func (c *RestClient) GetBasePrice() (*RestResponse, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/GetBasePrice", c.baseURL), bytes.NewReader([]byte(*body)))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSendSMS/GetBasePrice", c.baseURL), bytes.NewReader([]byte(*body)))
 	if err != nil {
 		return nil, err
 	}
@@ -226,7 +226,7 @@ func (c *RestClient) GetUserNumbers() (*RestResponse, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/GetUserNumbers", c.baseURL), bytes.NewReader([]byte(*body)))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSendSMS/GetUserNumbers", c.baseURL), bytes.NewReader([]byte(*body)))
 	if err != nil {
 		return nil, err
 	}
@@ -248,7 +248,7 @@ func (c *RestClient) BaseServiceNumber(args *BaseServiceNumberRestModel) (*RestR
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/BaseServiceNumber", c.baseURL), bytes.NewReader([]byte(*body)))
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSendSMS/BaseServiceNumber", c.baseURL), bytes.NewReader([]byte(*body)))
 	if err != nil {
 		return nil, err
 	}
@@ -260,4 +260,91 @@ func (c *RestClient) BaseServiceNumber(args *BaseServiceNumberRestModel) (*RestR
 
 	return res, nil
 
+}
+
+
+
+// SMART
+
+func (c *RestClient) SendSmartSMS(args *SendSmartSMSRestModel) (*RestResponse, error) {
+	
+	body, err := c.addCredentials(args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSmartSMS/Send", c.baseURL), bytes.NewReader([]byte(*body)))
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callRestAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *RestClient) SendMultipleSmartSMS(args *SendMultipleSmartSMSRestModel) (*SmartRestResponse, error) {
+	
+	body, err := c.addCredentials(args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSmartSMS/SendMultiple", c.baseURL), bytes.NewReader([]byte(*body)))
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callRestAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *RestClient) GetSmartDeliveries2(args *GetSmartDeliveries2RestModel) (*RestResponse, error) {
+	
+	body, err := c.addCredentials(args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSmartSMS/GetDeliveries2", c.baseURL), bytes.NewReader([]byte(*body)))
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callRestAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+
+func (c *RestClient) GetSmartDeliveries(args *GetSmartDeliveriesRestModel) (*RestResponse, error) {
+	
+	body, err := c.addCredentials(args)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", fmt.Sprintf("%sSmartSMS/GetDeliveries", c.baseURL), bytes.NewReader([]byte(*body)))
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := c.callRestAPI(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
 }

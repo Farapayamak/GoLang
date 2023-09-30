@@ -8,6 +8,17 @@ type RestResponse struct {
 	StrRetStatus	string
 }
 
+type SmartRestResponse struct {
+	ReqStatus		string
+	Message			string
+	Result			[]SmartRestResult
+}
+
+type SmartRestResult struct {
+	Mobile		string
+	ID			int64
+}
+
 
 type SendSMSRestModel struct {
 	To		string
@@ -30,4 +41,28 @@ type BaseServiceNumberRestModel struct {
 	Text		string
 	To			string
 	BodyId		int
+}
+
+type SendSmartSMSRestModel struct {
+	To				string
+	Text			string
+	From			string
+	FromSupportOne	string
+	FromSupportTwo	string
+}
+
+type SendMultipleSmartSMSRestModel struct {
+	To				[]string
+	Text			[]string
+	From			string
+	FromSupportOne	string
+	FromSupportTwo	string
+}
+
+type GetSmartDeliveries2RestModel struct {
+	Id				int64
+}
+
+type GetSmartDeliveriesRestModel struct {
+	Ids				[]int64
 }
